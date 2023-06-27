@@ -31,8 +31,8 @@ module "lambda_function" {
   attach_policy_statements = true
   policy_statements = {
     readonly = {
-      effect    = "Allow"
-      actions   = [
+      effect = "Allow"
+      actions = [
         "ec2:DescribeRegions",
         "logs:DescribeLogGroups"
       ]

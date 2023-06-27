@@ -15,58 +15,58 @@ This Terraform module is the part of [serverless.tf framework](https://github.co
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.22 |
-| <a name="requirement_docker"></a> [docker](#requirement\_docker) | >= 2.12, < 3.0 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | >= 2.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.64 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.22 |
-| <a name="provider_docker"></a> [docker](#provider\_docker) | >= 2.12, < 3.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | >= 2.0 |
+No providers.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_eventbridge"></a> [eventbridge](#module\_eventbridge) | terraform-aws-modules/eventbridge/aws | ~> 2.3 |
+| <a name="module_lambda_function"></a> [lambda\_function](#module\_lambda\_function) | terraform-aws-modules/lambda/aws | ~> 5.0 |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_ecr_lifecycle_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
-| [aws_ecr_repository.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
-| [docker_registry_image.this](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/registry_image) | resource |
-| [null_resource.sam_metadata_docker_registry_image](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [aws_caller_identity.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
+No resources.
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_build_args"></a> [build\_args](#input\_build\_args) | A map of Docker build arguments. | `map(string)` | `{}` | no |
-| <a name="input_create_ecr_repo"></a> [create\_ecr\_repo](#input\_create\_ecr\_repo) | Controls whether ECR repository for Lambda image should be created | `bool` | `false` | no |
-| <a name="input_docker_file_path"></a> [docker\_file\_path](#input\_docker\_file\_path) | Path to Dockerfile in source package | `string` | `"Dockerfile"` | no |
-| <a name="input_ecr_address"></a> [ecr\_address](#input\_ecr\_address) | Address of ECR repository for cross-account container image pulling (optional). Option `create_ecr_repo` must be `false` | `string` | `null` | no |
-| <a name="input_ecr_force_delete"></a> [ecr\_force\_delete](#input\_ecr\_force\_delete) | If true, will delete the repository even if it contains images. | `bool` | `true` | no |
-| <a name="input_ecr_repo"></a> [ecr\_repo](#input\_ecr\_repo) | Name of ECR repository to use or to create | `string` | `null` | no |
-| <a name="input_ecr_repo_lifecycle_policy"></a> [ecr\_repo\_lifecycle\_policy](#input\_ecr\_repo\_lifecycle\_policy) | A JSON formatted ECR lifecycle policy to automate the cleaning up of unused images. | `string` | `null` | no |
-| <a name="input_ecr_repo_tags"></a> [ecr\_repo\_tags](#input\_ecr\_repo\_tags) | A map of tags to assign to ECR repository | `map(string)` | `{}` | no |
-| <a name="input_image_tag"></a> [image\_tag](#input\_image\_tag) | Image tag to use. If not specified current timestamp in format 'YYYYMMDDhhmmss' will be used. This can lead to unnecessary rebuilds. | `string` | `null` | no |
-| <a name="input_image_tag_mutability"></a> [image\_tag\_mutability](#input\_image\_tag\_mutability) | The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE` | `string` | `"MUTABLE"` | no |
-| <a name="input_keep_remotely"></a> [keep\_remotely](#input\_keep\_remotely) | Whether to keep Docker image in the remote registry on destroy operation. | `bool` | `false` | no |
-| <a name="input_platform"></a> [platform](#input\_platform) | The target architecture platform to build the image for. | `string` | `null` | no |
-| <a name="input_scan_on_push"></a> [scan\_on\_push](#input\_scan\_on\_push) | Indicates whether images are scanned after being pushed to the repository | `bool` | `false` | no |
-| <a name="input_source_path"></a> [source\_path](#input\_source\_path) | Path to folder containing application code | `string` | `null` | no |
+| <a name="input_cloudwatch_logs_retention_in_days"></a> [cloudwatch\_logs\_retention\_in\_days](#input\_cloudwatch\_logs\_retention\_in\_days) | Specifies the number of days you want to retain log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. | `number` | `90` | no |
+| <a name="input_create"></a> [create](#input\_create) | Controls whether to create resources | `bool` | `true` | no |
+| <a name="input_create_package"></a> [create\_package](#input\_create\_package) | Whether to create Lambda function package (requires Python) | `string` | `false` | no |
+| <a name="input_description"></a> [description](#input\_description) | Description of Lambda function | `string` | `"CloudWatch Log Retention Manager"` | no |
+| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | A map that defines environment variables for the Lambda Function. | `map(string)` | `{}` | no |
+| <a name="input_eventbridge_role_name"></a> [eventbridge\_role\_name](#input\_eventbridge\_role\_name) | Name of EventBridge IAM role to create | `string` | `null` | no |
+| <a name="input_eventbridge_tags"></a> [eventbridge\_tags](#input\_eventbridge\_tags) | A map of tags to assign to all resources created by EventBridge module | `map(string)` | `{}` | no |
+| <a name="input_lambda_tags"></a> [lambda\_tags](#input\_lambda\_tags) | A map of tags to assign to all resources created by Lambda module | `map(string)` | `{}` | no |
+| <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. Valid value between 128 MB to 10,240 MB (10 GB), in 64 MB increments. | `number` | `256` | no |
+| <a name="input_name"></a> [name](#input\_name) | Lambda function name | `string` | `"cloudwatch-log-retention-manager"` | no |
+| <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Putin_khuylo! | `bool` | `true` | no |
+| <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | ARN of IAM Role used by EventBridge to invoke Lambda Function | `string` | `null` | no |
+| <a name="input_schedule_expression"></a> [schedule\_expression](#input\_schedule\_expression) | Schedule expression for EventBridge to trigger Lambda function. Can be cron() or rate(). | `string` | `"rate(12 hours)"` | no |
+| <a name="input_source_path"></a> [source\_path](#input\_source\_path) | Source path object with instructions on how to build Lambda function package | `any` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to all resources | `map(string)` | `{}` | no |
+| <a name="input_timeout"></a> [timeout](#input\_timeout) | The amount of time your Lambda Function has to run in seconds. | `number` | `30` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_image_uri"></a> [image\_uri](#output\_image\_uri) | The ECR image URI for deploying lambda |
+| <a name="output_eventbridge_schedule_arns"></a> [eventbridge\_schedule\_arns](#output\_eventbridge\_schedule\_arns) | The EventBridge Schedule ARNs created |
+| <a name="output_eventbridge_schedule_ids"></a> [eventbridge\_schedule\_ids](#output\_eventbridge\_schedule\_ids) | The EventBridge Schedule IDs created |
+| <a name="output_lambda_cloudwatch_log_group_arn"></a> [lambda\_cloudwatch\_log\_group\_arn](#output\_lambda\_cloudwatch\_log\_group\_arn) | The ARN of the Cloudwatch Log Group |
+| <a name="output_lambda_cloudwatch_log_group_name"></a> [lambda\_cloudwatch\_log\_group\_name](#output\_lambda\_cloudwatch\_log\_group\_name) | The name of the Cloudwatch Log Group |
+| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | The ARN of the Lambda Function |
+| <a name="output_lambda_function_arn_static"></a> [lambda\_function\_arn\_static](#output\_lambda\_function\_arn\_static) | The static ARN of the Lambda Function. Use this to avoid cycle errors between resources (e.g., Step Functions) |
+| <a name="output_lambda_function_name"></a> [lambda\_function\_name](#output\_lambda\_function\_name) | The name of the Lambda Function |
+| <a name="output_lambda_role_arn"></a> [lambda\_role\_arn](#output\_lambda\_role\_arn) | The ARN of the IAM role created for the Lambda Function |
+| <a name="output_lambda_role_name"></a> [lambda\_role\_name](#output\_lambda\_role\_name) | The name of the IAM role created for the Lambda Function |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors

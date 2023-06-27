@@ -22,13 +22,13 @@ output "lambda_role_arn" {
 
 output "lambda_role_name" {
   description = "The name of the IAM role created for the Lambda Function"
-  value       =  module.cloudwatch_log_retention_manager.lambda_role_name
+  value       = module.cloudwatch_log_retention_manager.lambda_role_name
 }
 
 # CloudWatch Log Group
 output "lambda_cloudwatch_log_group_arn" {
   description = "The ARN of the Cloudwatch Log Group"
-  value       =  module.cloudwatch_log_retention_manager.lambda_cloudwatch_log_group_arn
+  value       = module.cloudwatch_log_retention_manager.lambda_cloudwatch_log_group_arn
 }
 
 output "lambda_cloudwatch_log_group_name" {

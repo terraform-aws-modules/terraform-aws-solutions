@@ -29,7 +29,7 @@ module "cloudwatch_log_retention_manager" {
   name = local.name
 
   # Create package from the source (requires Python)
-#  create_package = true
+  #  create_package = true
 
   # Disable creation of the package to use the package distributed in the module
   create_package = false
