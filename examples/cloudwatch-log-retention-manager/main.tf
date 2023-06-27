@@ -38,7 +38,7 @@ module "cloudwatch_log_retention_manager" {
     RETAIN_DAYS = 90
   }
 
-  schedule_expression = "rate(1 minute)"
+  schedule_expression = "rate(6 hours)"
   # role_arn = "arn:aws:iam::835367859851:role/my-custom-role"
 
   tags = local.tags

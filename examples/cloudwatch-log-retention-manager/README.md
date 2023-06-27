@@ -1,7 +1,10 @@
-# Triggers of AWS Lambda examples
+# CloudWatch Log Retention Manager example
 
-Configuration in this directory creates AWS Lambda Function with some triggers (eg. CloudWatch Events).
+Terraform module that creates a Lambda Function triggered by EventBridge Scheduler.
 
+Lambda Function goes through all AWS regions and sets the retention period of CloudWatch Logs to the numeric value (`RETAIN_DAYS`) if it wasn't specified already.
+
+This Terraform module is the part of [serverless.tf framework](https://github.com/antonbabenko/serverless.tf), which aims to simplify all operations when working with the serverless in Terraform.
 
 ## Usage
 
