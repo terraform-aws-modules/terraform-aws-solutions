@@ -13,17 +13,22 @@ def lambda_handler(event, context):
         region = region_dict['RegionName']
         print('Region:', region)
         logs = session.client('logs', region_name=region)
-        log_groups = logs.describe_log_groups()
+        paginator = logs.get_paginator('describe_log_groups')
 
-        for log_group in log_groups['logGroups']:
-            log_group_name = log_group['logGroupName']
-            if 'retentionInDays' in log_group:
-                print(region, log_group_name, log_group['retentionInDays'], 'days')
-            else:
-                print(region, log_group_name, retain_days, 'days **PUT**')
-                response = logs.put_retention_policy(
-                    logGroupName=log_group_name,
-                    retentionInDays=retain_days
-                )
+        for page in paginator.paginate():
+            for log_group in page['logGroups']:
+                log_group_name = log_group['logGroupName']
+                if 'retentionInDays' in log_group:
+                    print(region, log_group_name, log_group['retentionInDays'], 'days')
+                else:
+                    print(region, log_group_name, retain_days, 'days **PUT**')
+                    response = logs.put_retention_policy(
+                        logGroupName=log_group_name,
+                        retentionInDays=retain_days
+                    )
 
     return 'CloudWatchLogRetention.Success'
+
+
+if __name__ == '__main__':
+    lambda_handler({}, {})
