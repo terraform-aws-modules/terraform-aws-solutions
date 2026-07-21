@@ -14,7 +14,7 @@ module "lambda_function" {
   function_name = var.name
   description   = var.description
   handler       = "log_retention_manager.lambda_handler"
-  runtime       = "python3.10"
+  runtime       = "python3.14"
   publish       = true
 
   memory_size           = var.memory_size
