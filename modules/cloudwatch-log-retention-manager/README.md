@@ -49,6 +49,7 @@ No resources.
 | <a name="input_name"></a> [name](#input\_name) | Lambda function name | `string` | `"cloudwatch-log-retention-manager"` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Putin_khuylo! | `bool` | `true` | no |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | ARN of IAM Role used by EventBridge to invoke Lambda Function | `string` | `null` | no |
+| <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda function runtime (must be a version of python) | `string` | `"python3.14"` | no |
 | <a name="input_schedule_expression"></a> [schedule\_expression](#input\_schedule\_expression) | Schedule expression for EventBridge to trigger Lambda function. Can be cron() or rate(). | `string` | `"rate(12 hours)"` | no |
 | <a name="input_source_path"></a> [source\_path](#input\_source\_path) | Source path object with instructions on how to build Lambda function package | `any` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to all resources | `map(string)` | `{}` | no |
