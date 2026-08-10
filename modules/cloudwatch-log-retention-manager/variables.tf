@@ -43,7 +43,7 @@ variable "description" {
 }
 
 variable "runtime" {
-  description = "Runtime of Lambda function"
+  description = "Lambda function runtime (must be a version of python)"
   type        = string
   default     = "python3.14"
 }
