@@ -42,6 +42,12 @@ variable "description" {
   default     = "CloudWatch Log Retention Manager"
 }
 
+variable "runtime" {
+  description = "Runtime of Lambda function"
+  type        = string
+  default     = "python3.14"
+}
+
 variable "source_path" {
   description = "Source path object with instructions on how to build Lambda function package"
   type        = any
