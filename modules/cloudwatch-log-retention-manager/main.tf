@@ -7,7 +7,7 @@ locals {
 ##################
 module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 5.0"
+  version = "~> 8.0"
 
   create = local.create
 
